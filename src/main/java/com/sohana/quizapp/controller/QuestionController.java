@@ -35,4 +35,12 @@ public class QuestionController {
         String response = questionService.addQuestion(questionModel);
         return ResponseEntity.ok(response);
     }
+
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteQuestion(@PathVariable Integer id)
+    {
+        String response = questionService.deleteQuestion(id);
+        return ResponseEntity.ok(response);
+    }
 }

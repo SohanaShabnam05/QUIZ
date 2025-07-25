@@ -26,4 +26,14 @@ public class QuestionService {
         questionDao.save(questionModel);
         return "Success";
     }
+
+    public String deleteQuestion(Integer id)
+    {
+        if(!questionDao.existsById(id))
+        {
+            return "Question with ID" + id + " does not exist. ";
+        }
+        questionDao.deleteById(id);
+        return "Question Deleted successfully";
+    }
 }
