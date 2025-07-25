@@ -3,8 +3,11 @@ package com.sohana.quizapp.service;
 import com.sohana.quizapp.dao.QuestionDao;
 import com.sohana.quizapp.model.QuestionModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,8 +16,16 @@ public class QuestionService {
     @Autowired
     QuestionDao questionDao;
 
-    public List<QuestionModel> getAllQuestion() {
-        return questionDao.findAll();
+    public ResponseEntity<List<QuestionModel>> getAllQuestion() {
+
+        try {
+            return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
 
     public List<QuestionModel> getAllQuestionsByCategory(String category) {

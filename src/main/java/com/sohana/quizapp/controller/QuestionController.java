@@ -19,7 +19,7 @@ public class QuestionController {
     QuestionService questionService;
 
     @GetMapping("/allQuestions") // added forward slash
-    public List<QuestionModel> getAllQuestion() {
+    public ResponseEntity<List<QuestionModel>> getAllQuestion() {
         return questionService.getAllQuestion();
     }
 
