@@ -1,6 +1,7 @@
 package com.sohana.quizapp.controller;
 
 import com.sohana.quizapp.dao.QuestionDao;
+import com.sohana.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuizController {
 
     @Autowired
-    QuestionDao.QuizService quizService;
+    QuizService quizService;
 
     @PostMapping("/create")
     public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title)
     {
-        return new ResponseEntity<>("I'm here", HttpStatus.OK);
+        return quizService.createQuiz(category, numQ, title);
     }
+
+
 }
